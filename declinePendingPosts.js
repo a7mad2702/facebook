@@ -11,8 +11,7 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function declinePosts() {
   try {
     console.log("🧹 Starting :::decline pending posts:::...timerId:", timerId);
-    window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
-    await sleep(1000);
+  
     
 
 const selectAll = await document.querySelectorAll('[aria-label*="Select all"]')[0];
@@ -32,6 +31,12 @@ if(declineButton){
     console.error("❌ Error processing posts:", error);
   } finally {
     // Schedule the next run only AFTER the current one completely finishes
+     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+    await sleep(2000);
+
+    window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+    await sleep(3000);
+    
     timerId = setTimeout(declinePosts, 60000); 
   }
 }
