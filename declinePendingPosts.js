@@ -3,7 +3,7 @@
 // you have to be admin on the group to run this script on your browser console
 // 1- open your group spam ===> https://www.facebook.com/groups/PutHereGroupIDNumber/pending_posts/
 // 2- open the browser console then copy and paste this script 
-// 3- this will run every 6 seconds to finish deleting all pending posts
+// 3- this will run every minute to finish deleting all pending posts
 
 let timerId = 0;
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
