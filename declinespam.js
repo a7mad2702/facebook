@@ -10,8 +10,7 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function cleanSpamPosts() {
   try {
     console.log("🧹 Starting :::decline spam:::...timerId:", timerId);
-    window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
-    await sleep(1000);
+   
     const searchText = "Decline";
 
 const matchingSpans = await Array.from(document.querySelectorAll('span')).filter(span => span.textContent.trim() === searchText);
@@ -26,6 +25,12 @@ let cnt = matchingSpans.length;
 } catch (error) {
     console.error("❌ Error processing posts:", error);
   } finally {
+    
+     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+    await sleep(2000);
+
+    window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
+    await sleep(3000);
     // Schedule the next run only AFTER the current one completely finishes
     timerId = setTimeout(cleanSpamPosts, 60000); 
   }
