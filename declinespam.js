@@ -1,7 +1,7 @@
 // ---- decline spam
-// you have to be admin on the group ro run this script on your browser console
+// you have to be admin on the group to run this script on your browser console
 // 1- open your group spam ===> https://www.facebook.com/groups/PutHereGroupIDNumber/spam
-// 2- open the brwoser console then copy and paste this script 
+// 2- open the browser console then copy and paste this script 
 // 3- this will run every 6 seconds to finish deleting all spam posts
 
 let timerId = 0;
