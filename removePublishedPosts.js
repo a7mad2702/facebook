@@ -3,7 +3,9 @@
 // you have to be admin on the group ro run this script on your browser console
 // 1- open your group spam ===> https://www.facebook.com/groups/PutHereGroupIDNumber/
 // 2- open the brwoser console then copy and paste this script 
-// 3- this will run every minute to finish deleting all published posts
+// 3- this will run every 3 minute to finish deleting all published posts, (you can change the value of scheduleMinutes)
+
+let scheduleMinutes = 3;
 
 let timerId = 0;
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -11,8 +13,6 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function cleanPosts() {
   try {
     console.log("🧹 Starting :::remove published facebook posts:::...timerId:", timerId);
-
-    
 
     var menuButtons = await document.querySelectorAll('[aria-label*="Actions for this post"]');
     let index = 1;
@@ -49,14 +49,16 @@ let cnt = menuButtons.length;
   } catch (error) {
     console.error("❌ Error processing posts:", error);
   } finally {
+    // Schedule the next run only AFTER the current one completely finishes
     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
     await sleep(2000);
 
     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
     await sleep(3000);
-    
-    // Schedule the next run only AFTER the current one completely finishes
-    timerId = setTimeout(cleanPosts, 60000); 
+
+    let milliseconds = 1000 * 60 * scheduleMinutes;
+
+    timerId = setTimeout(cleanPosts, milliseconds); 
   }
 }
 
