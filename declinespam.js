@@ -2,8 +2,9 @@
 // you have to be admin on the group to run this script on your browser console
 // 1- open your group spam ===> https://www.facebook.com/groups/PutHereGroupIDNumber/spam
 // 2- open the browser console then copy and paste this script 
-// 3- this will run every minute to finish deleting all spam posts
+// 3- this will run every 3 minutes to finish deleting all spam posts
 
+let scheduleMinutes = 3;
 let timerId = 0;
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -32,7 +33,8 @@ let cnt = matchingSpans.length;
     window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
     await sleep(3000);
     // Schedule the next run only AFTER the current one completely finishes
-    timerId = setTimeout(cleanSpamPosts, 60000); 
+    let milliseconds = 1000 * 60 * scheduleMinutes;
+    timerId = setTimeout(cleanSpamPosts, scheduleMinutes); 
   }
 }
 cleanSpamPosts();
